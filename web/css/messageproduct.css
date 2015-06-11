@@ -1,0 +1,225 @@
+
+/*Font Gotham*/
+@font-face {
+    font-family: "Gotham-Light";
+    src: url("../fonts/Gotham-Light.woff") format("opentype");
+
+}
+
+@font-face {
+    font-family: "Gotham-XLight";
+    src: url("../fonts/Gotham-XLight.woff") format("opentype");
+}
+
+@font-face {
+    font-family: "Gotham-ThinItalic";
+    src: url("../fonts/Gotham-ThinItalic.woff") format("opentype");
+}
+
+@font-face {
+    font-family: "Gotham-Medium";
+    src: url("../fonts/Gotham-Light.woff") format("opentype");
+}
+
+/*Font Gotham*/
+
+.navbar-default .navbar-brand {
+    color: slategrey;
+    font-family: Gotham-XLight, serif;
+    font-weight: 900;
+    text-shadow: 0 1px 1px #333;
+}
+.page-wrapper {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+
+.blur {
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+}
+
+.modal-wrapper {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(255, 250, 250, 0.4);
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    -o-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+    z-index: 3;
+}
+
+.modal-wrapper.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal {
+    width: 90%;
+    height: 389px;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    top: 50%;
+    background: #fff;
+    box-shadow: 0 1px 35px 0px #333;
+    -webkit-box-shadow: 0 1px 35px 0px #333;
+    -moz-box-shadow: 0 1px 35px 0px #333;
+    -o-box-shadow: 0 1px 35px 0px #333;
+    opacity: 0;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.modal-wrapper.open .modal {
+    margin-top: -200px;
+    opacity: 1;
+    overflow: auto; /*borrar*/
+}
+
+.head {
+    overflow: hidden;
+    background: #4A5254;
+}
+
+.btn-close {
+    /*    width: 32px;
+        height: 32px;*/
+    display: block;
+    float: right;
+}
+
+.btn-close::before, .btn-close::after {
+    content: '';
+    width: 14px;
+    height: 6px;
+    display: block;
+    background: #fff;
+}
+
+.btn-close::before {
+    /*margin-top: 12px;*/
+    margin-top: 0;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.btn-close::after {
+    margin-top: -6px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+/*
+.content {
+    padding: 5%;
+}*/
+
+/*Second MOdal*/
+
+.page-wrappersecond {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+
+.blursecond {
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+}
+
+.modal-wrappersecond {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(255, 250, 250, 0.4);
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: all 0.25s ease-in-out;
+    -moz-transition: all 0.25s ease-in-out;
+    -o-transition: all 0.25s ease-in-out;
+    transition: all 0.25s ease-in-out;
+    z-index: 3;
+}
+
+.modal-wrappersecond.opensecond {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modalsecond {
+    width: 90%;
+    height: 389px;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 0 1px 35px 0px #333;
+    -webkit-box-shadow: 0 1px 35px 0px #333;
+    -moz-box-shadow: 0 1px 35px 0px #333;
+    -o-box-shadow: 0 1px 35px 0px #333;
+    top: 50%;
+    background: #fff;
+    opacity: 0;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.modal-wrappersecond.opensecond .modalsecond {
+    margin-top: -200px;
+    opacity: 1;
+    overflow: auto; /*borrar*/
+}
+
+.headsecond {
+    overflow: hidden;
+    background: #4A5254;
+}
+
+.btn-closesecond {
+    /*    width: 32px;
+        height: 32px;*/
+    display: block;
+    float: right;
+}
+
+.btn-closesecond::before, .btn-closesecond::after {
+    content: '';
+    width: 14px;
+    height: 6px;
+    display: block;
+    background: #fff;
+}
+
+.btn-closesecond::before {
+    /*margin-top: 12px;*/
+    margin-top: 0;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.btn-closesecond::after {
+    margin-top: -6px;
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}

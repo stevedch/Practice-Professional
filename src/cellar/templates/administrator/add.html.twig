@@ -1,0 +1,114 @@
+{% extends "administrator/base.html.twig" %}
+
+{% set active = 'form' %}
+
+ {% block stylesheets %}
+     {% for name, version in {
+     'normalize.min.css':'3.0.3',
+     'font-awesome.min.css':'4.3.0',
+     'bootstrap.css':'3.3.4',
+     'table.css':'1.0.0',
+     'validators.css':'1.0.0'
+     } %}
+         <link type="text/css" rel="stylesheet" href="{{ app.request.basepath }}/css/{{ name }}?v={{ version }}"/>
+     {% endfor %}
+ {% endblock %}
+
+
+{% block javascripts %}
+    {% for asset in [
+    'jquery-2.1.4.min.js',
+    'modernizr.js',
+    'bootstrap.min.js',
+    'control.js',
+    'validators.js',
+    ] %}
+        <script type="text/javascript" src="{{ app.request.basepath }}/js/{{ asset }}"></script>
+    {% endfor %}
+{% endblock %}
+{% block body %}
+    {% spaceless %}
+        <main>
+            <section>
+                <article>
+                    {% set alertTypeAvaillable = [ 'info', 'success', 'warning', 'error'] %}
+                    {% for alert in alertTypeAvaillable %}
+                        {% for message in app.session.getFlashBag.get(alert) %}
+                            <div class="alert alert-{{ alert }}" style="width: 100%;">
+                                <button class="close" data-dismiss="alert">×</button>
+                                {{ message|trans }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    <div class="col-lg-12" style="padding: 3em 1em;">
+                        {{ form_start(form) }}
+                        <div class="col-lg-12">
+
+                            <div class="form-group">
+                                {{ form_label(form.username) }}
+                                <div class="input-group">
+                                 <span class="input-group-addon danger"><span
+                                             class="glyphicon glyphicon-remove"></span></span>{{ form_widget(form.username) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                {{ form_label(form.role) }}
+
+                                <div class="input-group">
+                                    <span class="input-group-addon danger"><span
+                                                class="glyphicon glyphicon-remove"></span></span>  {{ form_widget(form.role) }}
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                {{ form_label(form.mail) }}
+                                <div class="input-group" data-validate="mail">
+                            <span class="input-group-addon danger"><span
+                                        class="glyphicon glyphicon-remove"></span></span>
+                                    {{ form_widget(form.mail) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                {{ form_label(form.status_user) }}
+                                <div class="input-group">
+                                    <span class="input-group-addon danger"><span
+                                                class="glyphicon glyphicon-remove"></span></span>{{ form_widget(form.status_user) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                {{ form_label(form.password.pass_1) }}
+                                <div class="input-group">
+                                 <span class="input-group-addon info"><span
+                                             class="glyphicon glyphicon-asterisk"></span></span>{{ form_widget(form.password.pass_1) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                {{ form_label(form.password.pass_2) }}
+                                <div class="input-group">
+                                 <span class="input-group-addon info"><span
+                                             class="glyphicon glyphicon-asterisk"></span></span>{{ form_widget(form.password.pass_2) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12"><br>
+                            {{ form_widget(form._token) }}
+                            {{ form_widget(form.save) }}
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                </article>
+            </section>
+        </main>
+    {% endspaceless %}
+{% endblock %}

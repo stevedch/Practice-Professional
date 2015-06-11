@@ -1,0 +1,63 @@
+{% extends "login/base.html.twig" %}
+
+{% set active = 'account' %}
+
+ {% block stylesheets %}
+     {% for name, version in {
+     'normalize.min.css':'3.0.3',
+     'font-awesome.min.css':'4.3.0',
+     'bootstrap.css':'3.3.4',
+     'login.css':'1.0.0'
+     } %}
+         <link type="text/css" rel="stylesheet" href="{{ app.request.basepath }}/css/{{ name }}?v={{ version }}"/>
+     {% endfor %}
+ {% endblock %}
+
+    {% block javascripts %}
+        {% for asset in [
+        'jquery-2.1.4.min.js',
+        'modernizr.js',
+        'bootstrap.min.js',
+        'control.js'
+        ] %}
+            <script type="text/javascript" src="{{ app.request.basepath }}/js/{{ asset }}"></script>
+        {% endfor %}
+    {% endblock %}
+
+{% block body %}
+    <main>
+        <section>
+            <article>
+                {% if error %}
+                    <div class="alert-red alert" id="alerts">
+                        {{ error }}
+                    </div>
+                {% endif %}
+                <div role="main" class="well well-sm-row row">
+                    <div class="col-md-12" style="border-bottom: 1px solid rgb(213, 213, 213);">
+                        <h1 class="text-center"
+                            style="font-weight: 800;color: #cd5c5c;">{{ 'TU OFICINA S.A'|trans }}</h1>
+                    </div>
+                    <form action="{{ path('administrator_login_check') }}" method="post"
+                          novalidate {{ form_enctype(form) }}
+                          class="form-vertical">
+                        <div class="col-lg-12" style="padding: 3em 1em;">
+                            <div class="col-lg-12">
+                                {{ form_label(form.username) }}
+                                {{ form_widget(form.username) }}
+                            </div>
+                            <div class="col-lg-12"><br/>
+                                {{ form_label(form.password) }}
+                                {{ form_widget(form.password) }}
+                            </div>
+                            <div class="col-lg-12"><br/>
+                                {{ form_widget(form._token) }}
+                                {{ form_widget(form.login) }}
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </article>
+        </section>
+    </main>
+{% endblock %}

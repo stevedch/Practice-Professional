@@ -1,0 +1,60 @@
+
+/*Font Gotham*/
+@font-face {
+    font-family: "Gotham-Light";
+    src: url("../fonts/Gotham-Light.woff") format("opentype");
+
+}
+
+@font-face {
+    font-family: "Gotham-XLight";
+    src: url("../fonts/Gotham-XLight.woff") format("opentype");
+}
+
+@font-face {
+    font-family: "Gotham-ThinItalic";
+    src: url("../fonts/Gotham-ThinItalic.woff") format("opentype");
+}
+
+@font-face {
+    font-family: "Gotham-Medium";
+    src: url("../fonts/Gotham-Light.woff") format("opentype");
+}
+
+/*Font Gotham*/
+
+.input-group-addon.primary {
+    background-color: rgb(50, 118, 177);
+    border-color: rgb(40, 94, 142);
+    color: rgb(255, 255, 255);
+}
+
+.input-group-addon.success {
+    background-color: rgb(92, 184, 92);
+    border-color: rgb(76, 174, 76);
+    color: rgb(255, 255, 255);
+}
+
+.input-group-addon.info {
+    background-color: rgb(57, 179, 215);
+    border-color: rgb(38, 154, 188);
+    color: rgb(255, 255, 255);
+}
+
+.input-group-addon.warning {
+    background-color: rgb(240, 173, 78);
+    border-color: rgb(238, 162, 54);
+    color: rgb(255, 255, 255);
+}
+
+.input-group-addon.danger {
+    background-color: rgb(217, 83, 79);
+    border-color: rgb(212, 63, 58);
+    color: rgb(255, 255, 255);
+}
+.navbar-default .navbar-brand {
+    color: slategrey;
+    font-family: Gotham-XLight, serif;
+    font-weight: 900;
+    text-shadow: 0 1px 1px #333;
+}

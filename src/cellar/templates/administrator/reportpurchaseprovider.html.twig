@@ -1,0 +1,96 @@
+{% extends "administrator/base.html.twig" %}
+
+{% block stylesheets %}
+    {% for name, version in {
+    'normalize.min.css':'3.0.3',
+    'font-awesome.min.css':'4.3.0',
+    'bootstrap.css':'3.3.4',
+    'table.css':'1.0.0'
+    } %}
+        <link type="text/css" rel="stylesheet" href="{{ app.request.basepath }}/css/{{ name }}?v={{ version }}"/>
+    {% endfor %}
+{% endblock %}
+
+
+{% block javascripts %}
+    {% for asset in [
+    'jquery-2.1.4.min.js',
+    'modernizr.js',
+    'bootstrap.min.js',
+    'control.js'
+    ] %}
+        <script type="text/javascript" src="{{ app.request.basepath }}/js/{{ asset }}"></script>
+    {% endfor %}
+{% endblock %}
+
+{% block body %}
+    <div id="no-more-tables" class="div-container">
+        {% include "administrator/search/search.html.twig" %}
+        <table class="table table-hover table-responsive text-center">
+            <thead class="cf">
+            <tr class="tr-h">
+                <td class="numeric">Número de compra</td>
+                <td class="numeric">Nombre del proveedor</td>
+                <td class="numeric">Teléfono</td>
+                <td class="numeric">Dirección</td>
+                <td class="numeric">Fecha de facturación</td>
+                <td class="numeric">Nombre de producto</td>
+                <td class="numeric">Valor unitario</td>
+                <td class="numeric">Precio de producto</td>
+                <td class="numeric">Cantidad de producto</td>
+                <td class="numeric">Iva</td>
+                <td class="numeric">Descuento de producto</td>
+                <td class="numeric">Precio total</td>
+            </tr>
+            </thead>
+            <tbody class="searchable-container">
+            {% for reportProvider in reportproviders %}
+                <tr class="items">
+                    <td data-title="Número de compra">
+                        {{ reportProvider.2.id }}
+                    </td>
+                    <td data-title="Nombre del proveedor">
+                        {{ reportProvider.0.providerName }}
+                    </td>
+                    <td data-title="Teléfono">
+                        {{ reportProvider.0.providerTelephone }}
+                    </td>
+                    <td data-title="Dirección">
+                        {{ reportProvider.0.providerAddress }}
+                    </td>
+                    <td data-title="Fecha de facturación" class="numeric">
+                        {{ reportProvider.1.purchaseBillingdate|date('Y-m-d H:i:s') }}
+                    </td>
+                    <td data-title="Nombre del producto" class="numeric">
+                        {{ reportProvider.3.productName }}
+                    </td>
+                    <td data-title="Valor unitario" class="numeric">
+                        {{ reportProvider.2.purchaseDetailUnitValue }}
+                    </td>
+                    <td data-title="Precio del producto" class="numeric">
+                        $ {{ reportProvider.2.purchaseDetailPrice|number_format(0, '.', ',') }}
+                    </td>
+                    <td data-title="Cantidad de producto" class="numeric">
+                        {{ reportProvider.2.purchaseDetailQuantity }}
+                    </td>
+
+                    <td data-title="Iva" class="numeric">
+                        {{ reportProvider.2.purchaseDetailIva }}
+                    </td>
+                    <td data-title="Descuento del producto" class="numeric">
+                        {{ reportProvider.2.purchaseDetailDiscount }}
+                    </td>
+                    <td data-title="Precio total" class="numeric">
+                        $ {{ reportProvider.2.purchaseDetailValueTotal|number_format(0, '.', ',') }}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td class="text-center text-uppercase text-danger well-sm"
+                        colspan="12">{{ 'No se ha registrado ninguna factura.'|trans }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

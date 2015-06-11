@@ -1,0 +1,116 @@
+{% extends "administrator/base.html.twig" %}
+
+{% block stylesheets %}
+    {% for name, version in {
+    'normalize.min.css':'3.0.3',
+    'font-awesome.min.css':'4.3.0',
+    'bootstrap.css':'3.3.4',
+    'table.css':'1.0.0'
+    } %}
+        <link type="text/css" rel="stylesheet" href="{{ app.request.basepath }}/css/{{ name }}?v={{ version }}"/>
+    {% endfor %}
+{% endblock %}
+
+
+{% block javascripts %}
+    {% for asset in [
+    'jquery-2.1.4.min.js',
+    'modernizr.js',
+    'bootstrap.min.js',
+    'control.js'
+    ] %}
+        <script type="text/javascript" src="{{ app.request.basepath }}/js/{{ asset }}"></script>
+    {% endfor %}
+{% endblock %}
+
+{% block body %}
+    <div id="no-more-tables" class="div-container">
+        {% include "administrator/search/search.html.twig" %}
+        <table class="table table-hover table-responsive text-center">
+            <thead class="cf">
+            <tr class="tr-h">
+                <td class="numeric">Nro</td>
+                <td class="numeric">Usuario</td>
+                <td class="numeric">Creado el</td>
+                <td class="numeric">Rol</td>
+                <td class="numeric">Email</td>
+                <td class="numeric">Estado</td>
+                <td class="numeric">Opciones</td>
+            </tr>
+            </thead>
+            <tbody class="searchable-container">
+            {% for user in users %}
+                <tr class="items">
+                    <td data-title="Nro">
+                        <div class="">{{ user.id|e|title }}</div>
+                    </td>
+                    <td data-title="Usuario">
+                        {% if user.userName %}
+                            <div class="">{{ user.userName|e|title }}</div>
+                        {% else %}
+                            <div class="label label-danger">{{ 'Usuario no asignado'|trans }}</div>
+                        {% endif %}</td>
+                    <td data-title="Creado el">{% if user.createdAt %}
+                            <div class="">{{ user.createdAt|date('Y-m-d H:i:s', "America/Santiago")|e }}</div>
+                        {% else %}
+                            <div class="label label-danger">{{ 'error fecha'|trans }}</div>
+                        {% endif %}</td>
+                    <td data-title="Rol">{% if user.role == 'ROLE_SUPER_ADMIN' %}
+                            {{ 'Administrador General'|trans }}
+                        {% elseif user.role == 'ROLE_GERENTE' %}
+                            {{ 'Gerente'|trans }}
+                        {% elseif user.role == 'ROLE_OPERADOR' %}
+                            {{ 'Operador'|trans }}
+                        {% elseif user.role == 'ROLE_USER' %}
+                            {{ 'Usuario estándar'|trans }}
+                        {% else %}
+                            <div class="label label-default"> {{ 'Rol no asignado'|trans }}</div>
+                        {% endif %}</td>
+                    <td data-title="Email">
+
+                        {% if user.mail %}
+                            <div class="">{{ user.mail|e|title }}</div>
+                        {% else %}
+                            <div class="label label-danger">{{ 'Email no asignado'|trans }}</div>
+                        {% endif %}
+
+                    </td>
+                    <td data-title="Estado" class="numeric">
+                        {% if user.statusUser == 1 %}
+                            <small class="label label-success"> {{ 'Usuario activado'|upper }}</small>
+                        {% elseif user.statusUser == 2 %}
+                            <small class="label label-danger">{{ 'Usuario desactivado'|upper }}</small>
+                        {% elseif user.statusUser is null %}
+                            <small class="label label-warning">{{ 'Estado no asigando'|trans }}</small>
+                        {% endif %}
+                    </td>
+                    <td data-title="Opciones" class="numeric">
+
+                        <small class="label label-warning"><a class="a-color"
+                                                              href="{{ path('cellar_dev_admin_users_edit', {'user': user.id}) }}"><i
+                                        class="fa fa-pencil-square-o">&nbsp;{{ 'actualizar'|upper }}</i></a>
+                        </small>
+                        &nbsp;
+                        {% if user.id != 1 %}
+                            <small class="label label-danger"><a class="a-color"
+                                                                 href="{{ path('cellar_dev_admin_users_delete', {'user': user.id}) }}"><i
+                                            class="fa fa-trash">&nbsp;{{ 'eliminar'|upper }}</i></a>
+                            </small>
+                        {% else %}
+                            <small class="label label-info"><a class="a-color"
+                                                               href="{{ path('cellar_dev_admin_users_add') }}"><i
+                                            class="fa fa-plus-square-o">&nbsp;{{ 'Registrar nuevo usuario'|upper }}</i></a>
+                            </small>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td class="text-center text-uppercase text-danger well-sm"
+                        colspan="8">{{ 'Error.'|trans }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

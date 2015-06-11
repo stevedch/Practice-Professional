@@ -1,0 +1,91 @@
+{% extends "administrator/base.html.twig" %}
+
+{% block stylesheets %}
+    {% for name, version in {
+    'normalize.min.css':'3.0.3',
+    'font-awesome.min.css':'4.3.0',
+    'bootstrap.css':'3.3.4',
+    'validators.css':'1.0.0',
+    'table.css':'1.0.0'
+    } %}
+        <link type="text/css" rel="stylesheet" href="{{ app.request.basepath }}/css/{{ name }}?v={{ version }}"/>
+    {% endfor %}
+{% endblock %}
+
+
+{% block javascripts %}
+    {% for asset in [
+    'jquery-2.1.4.min.js',
+    'modernizr.js',
+    'bootstrap.min.js',
+    'control.js',
+    'validators.js'
+    ] %}
+        <script type="text/javascript" src="{{ app.request.basepath }}/js/{{ asset }}"></script>
+    {% endfor %}
+{% endblock %}
+{% block body %}
+    <main>
+        <section class="section">
+            <article class="article">
+                {% spaceless %}
+                    <div id="no-more-tables" class="div-container">
+                        {% include "administrator/search/search.html.twig" %}
+                        <table class="table table-hover table-responsive text-center">
+                            <thead class="cf">
+                            <tr class="tr-h">
+                                <td class="numeric">Número de proveedor</td>
+                                <td class="numeric">Nombre proveedor</td>
+                                <td class="numeric">Télefono</td>
+                                <td class="numeric">Dirección</td>
+                                <td class="numeric">Opciones</td>
+                            </tr>
+                            </thead>
+                            <tbody class="searchable-container">
+                            {% for provider in providers %}
+                                <tr class="items">
+                                    <td data-title="Nro proveedor">
+                                        <div class="">{{ provider.id|e|title }}</div>
+                                    </td>
+                                    <td data-title="Nombre proveedor">
+                                        <div class="">{{ provider.providerName|e|title }}</div>
+                                    </td>
+                                    <td data-title="Télefono">
+                                        <div class="">{{ provider.providerTelephone|e }}</div>
+                                    </td>
+                                    <td data-title="Dirección">
+                                        {% if  provider.providerAddress %}
+                                            <div class="">{{ provider.providerAddress|e }}</div>
+                                        {% else %}
+                                            <div class="label label-danger">{{ 'no asignado'|trans }}</div>
+                                        {% endif %}
+                                    </td>
+                                    <td data-title="Opciones" class="numeric">
+
+                                        <small class="label label-info"><a class="a-color"
+                                                                           href="{{ path('cellar_dev_providers_users_edit', {'provider': provider.id}) }}">
+                                                &nbsp;<i class="fa fa-pencil-square-o">{{ 'actualizar'|upper }}</i></a>
+                                        </small>
+                                        &nbsp;
+
+                                        <small class="label label-danger"><a class="a-color"
+                                                                             href="{{ path('cellar_dev_providers_users_delete', {'provider': provider.id}) }}"><i
+                                                        class="fa fa-trash">&nbsp;{{ 'eliminar'|upper }}</i></a>
+                                        </small>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td class="text-center text-uppercase text-danger well-sm"
+                                        colspan="12">{{ 'No se ha registrado a ningún proveedor.'|trans }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endspaceless %}
+            </article>
+        </section>
+    </main>
+
+{% endblock %}

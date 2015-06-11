@@ -1,0 +1,243 @@
+
+/*Font Gotham*/
+@font-face {
+    font-family: "Gotham-Light";
+    src: url("../fonts/Gotham-Light.woff") format("opentype");
+
+}
+
+@font-face {
+    font-family: "Gotham-XLight";
+    src: url("../fonts/Gotham-XLight.woff") format("opentype");
+}
+
+@font-face {
+    font-family: "Gotham-ThinItalic";
+    src: url("../fonts/Gotham-ThinItalic.woff") format("opentype");
+}
+
+@font-face {
+    font-family: "Gotham-Medium";
+    src: url("../fonts/Gotham-Light.woff") format("opentype");
+}
+
+/*Font Gotham*/
+
+.navbar-default .navbar-brand {
+    color: slategrey;
+    font-family: Gotham-XLight, serif;
+    font-weight: 900;
+    text-shadow: 0 1px 1px #333;
+}
+
+*, *::before, *::after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+section {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+section article {
+    margin: 0 auto;
+    max-width: 80%;
+    padding: 11em 0 10em 0;
+    text-align: center;
+    width: 330px;
+}
+
+section article h1,
+section article h2,
+section article h3 {
+    font-weight: 200;
+    font-size: 30px;
+    line-height: 40px;
+}
+
+section article strong {
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+section article a {
+    color: #fff;
+}
+
+section article div {
+    font-size: 12px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="password"] {
+    background: #EAE6E1;
+    border: 0;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 3px;
+    width: 100%;
+    max-width: 100%;
+    margin: 5px 0;
+    outline: medium none;
+}
+
+label {
+    float: left;
+    margin-right: 0.5em;
+    padding-top: 0.2em;
+    font-weight: 600;
+}
+
+main {
+    height: 100vh;
+    position: relative;
+}
+
+main section {
+    font-size: 12px;
+    text-align: center;
+}
+
+.header-h5 {
+    /* font-family: 'Lobster', cursive;*/
+}
+
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: #555;
+    background-color: #e7e7e7;
+    border-bottom: 3px solid cornflowerblue;
+}
+/* ALERTS */
+/* inspired by Twitter Bootstrap */
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    position: absolute;
+    bottom: 0;
+    right: 21px;
+    /* Each alert has its own width */
+    float: right;
+    clear: right;
+}
+
+.alert-red {
+    color: white;
+    background-color: #DA4453;
+    animation: fadein 3s;
+    -moz-animation: fadein 3s; /* Firefox */
+    -webkit-animation: fadein 3s; /* Safari and Chrome */
+    -o-animation: fadein 3s; /* Opera */
+}
+
+.alert-green {
+    color: white;
+    background-color: #37BC9B;
+}
+
+.alert-blue {
+    color: white;
+    background-color: #4A89DC;
+}
+
+.alert-yellow {
+    color: white;
+    background-color: #F6BB42;
+}
+
+.alert-orange {
+    color: white;
+    background-color: #E9573F;
+}
+
+.alert-red {
+    -webkit-animation: oneproperty 10s forwards 1;
+    -moz-animation: oneproperty 10s forwards 1;
+    -o-animation: oneproperty 10s forwards 1;
+    animation: oneproperty 10s forwards 1;
+}
+
+@-webkit-keyframes oneproperty {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes oneproperty {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@-o-keyframes oneproperty {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes oneproperty {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fadein {
+    /* Firefox */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadein {
+    /* Safari and Chrome */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@-o-keyframes fadein {
+    /* Opera */
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+

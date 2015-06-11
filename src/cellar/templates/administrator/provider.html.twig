@@ -1,0 +1,148 @@
+{% extends "administrator/base.html.twig" %}
+
+{% block stylesheets %}
+    {% for name, version in {
+    'normalize.min.css':'3.0.3',
+    'font-awesome.min.css':'4.3.0',
+    'bootstrap.css':'3.3.4',
+    'messageproduct.css':'1.0.0',
+    'validators.css':'1.0.0',
+    'table.css':'1.0.0',
+    } %}
+        <link type="text/css" rel="stylesheet" href="{{ app.request.basepath }}/css/{{ name }}?v={{ version }}"/>
+    {% endfor %}
+{% endblock %}
+
+
+{% block javascripts %}
+    {% for asset in [
+    'jquery-2.1.4.min.js',
+    'modernizr.js',
+    'bootstrap.min.js',
+    'control.js',
+    'validators.js',
+    'messageproduct.js'
+    ] %}
+        <script type="text/javascript" src="{{ app.request.basepath }}/js/{{ asset }}"></script>
+    {% endfor %}
+{% endblock %}
+{% block body %}
+    {% spaceless %}
+        <main>
+            <section class="section">
+                <article class="article">
+                    {% set alertTypeAvaillable = [ 'info', 'success', 'warning', 'error'] %}
+                    {% for alert in alertTypeAvaillable %}
+                        {% for message in app.session.getFlashBag.get(alert) %}
+                            <div class="alert alert-{{ alert }}" style="width: 100%;">
+                                <button class="close" data-dismiss="alert">×</button>
+                                {{ message|trans }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                    <div class="col-lg-12  well well-lg">
+                        <div class="col-lg-12 well well-sm">
+                            <h3 class="text-center text-uppercase">Factura Proveedor</h3>
+                        </div>
+                        {{ form_start(form) }}
+                        <div class="col-lg-12 well well-sm">
+                            <div class="col-lg-12">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        {{ form_label(form.id_provider) }}
+                                        <div class="input-group" data-validate="number">
+                            <span class="input-group-addon danger"><span
+                                        class="glyphicon glyphicon-remove"></span></span>
+                                            {{ form_widget(form.id_provider) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        {{ form_label(form.id_product) }}
+                                        <div class="input-group" data-validate="number">
+                            <span class="input-group-addon danger"><span
+                                        class="glyphicon glyphicon-remove"></span></span>
+                                            {{ form_widget(form.id_product) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        {{ form_label(form.purchase_detail_unit_value) }}
+                                        <div class="input-group" data-validate="number">
+                            <span class="input-group-addon danger"><span
+                                        class="glyphicon glyphicon-remove"></span></span>
+                                            {{ form_widget(form.purchase_detail_unit_value) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        {{ form_label(form.purchase_detail_price) }}
+                                        <div class="input-group" data-validate="number">
+                            <span class="input-group-addon danger"><span
+                                        class="glyphicon glyphicon-remove"></span></span>
+                                            {{ form_widget(form.purchase_detail_price) }}
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-12  well well-sm">
+                            <div class="col-lg-3">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        {{ form_label(form.purchase_detail_quantity) }}
+                                        <div class="input-group" data-validate="number">
+                            <span class="input-group-addon danger"><span
+                                        class="glyphicon glyphicon-remove"></span></span>
+                                            {{ form_widget(form.purchase_detail_quantity) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        {{ form_label(form.purchase_detail_iva) }}
+                                        <div class="input-group" data-validate="number">
+                            <span class="input-group-addon danger"><span
+                                        class="glyphicon glyphicon-remove"></span></span>
+                                            {{ form_widget(form.purchase_detail_iva) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-9">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        {{ form_label(form.purchase_detail_discount) }}
+                                        <div class="input-group" data-validate="number">
+                            <span class="input-group-addon danger"><span
+                                        class="glyphicon glyphicon-remove"></span></span>
+                                            {{ form_widget(form.purchase_detail_discount) }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        {{ form_label(form.purchase_detail_value_total) }}
+                                        <div class="input-group" data-validate="number">
+                            <span class="input-group-addon danger"><span
+                                        class="glyphicon glyphicon-remove"></span></span>
+                                            {{ form_widget(form.purchase_detail_value_total) }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{ form_widget(form._token) }}
+                        {{ form_widget(form.save) }}
+                        {{ form_end(form) }}
+                        {% include "administrator/modal/modalprovider.html.twig" %}
+                    </div>
+                </article>
+            </section>
+        </main>
+    {% endspaceless %}
+{% endblock %}

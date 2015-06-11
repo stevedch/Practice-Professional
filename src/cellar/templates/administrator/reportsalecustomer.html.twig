@@ -1,0 +1,94 @@
+{% extends "administrator/base.html.twig" %}
+
+{% block stylesheets %}
+    {% for name, version in {
+    'normalize.min.css':'3.0.3',
+    'font-awesome.min.css':'4.3.0',
+    'font-awesome.min.css':'4.3.0',
+    'bootstrap.css':'3.3.4',
+    'table.css':'1.0.0'
+    } %}
+        <link type="text/css" rel="stylesheet" href="{{ app.request.basepath }}/css/{{ name }}?v={{ version }}"/>
+    {% endfor %}
+{% endblock %}
+
+
+{% block javascripts %}
+    {% for asset in [
+    'jquery-2.1.4.min.js',
+    'modernizr.js',
+    'bootstrap.min.js',
+    'control.js'
+    ] %}
+        <script type="text/javascript" src="{{ app.request.basepath }}/js/{{ asset }}"></script>
+    {% endfor %}
+{% endblock %}
+
+{% block body %}
+    <div id="no-more-tables" class="div-container">
+        <table class="table table-hover table-responsive text-center">
+            {% include "administrator/search/search.html.twig" %}
+            <thead class="cf">
+            <tr class="tr-h">
+                <td class="numeric">Número de compra</td>
+                <td class="numeric">Rut de cliente</td>
+                <td class="numeric">Nombres</td>
+                <td class="numeric">Apellido paterno</td>
+                <td class="numeric">Apellido materno</td>
+                <td class="numeric">Fecha de facturación</td>
+                <td class="numeric">Nombre de producto</td>
+                <td class="numeric">Precio de producto</td>
+                <td class="numeric">Cantidad de producto</td>
+                <td class="numeric">Descuento de producto</td>
+                <td class="numeric">Precio total</td>
+            </tr>
+            </thead>
+            <tbody class="searchable-container">
+
+            {% for reportCustomer in reportCustomers %}
+                <tr class="items">
+                    <td data-title="Número de compra">
+                        {{ reportCustomer.2.id }}
+                    </td>
+                    <td data-title="Rut de cliente">
+                        {{ reportCustomer.0.customerRut }}
+                    </td>
+                    <td data-title="Nombre">
+                        {{ reportCustomer.0.customerName }}
+                    </td>
+                    <td data-title="Apellido paterno">
+                        {{ reportCustomer.0.customerLastname }}
+                    </td>
+                    <td data-title="Apellido Materno">
+                        {{ reportCustomer.0.customerMotherslastname }}
+                    </td>
+                    <td data-title="Fecha de facturación" class="numeric">
+                        {{ reportCustomer.1.invoiceBillingdate|date('Y-m-d H:i:s') }}
+                    </td>
+                    <td data-title="Nombre de producto" class="numeric">
+                        {{ reportCustomer.3.productName }}
+                    </td>
+                    <td data-title="Precio de producto" class="numeric">
+                        $ {{ reportCustomer.2.invoiceDetailprice|number_format(0, '.', ',') }}
+                    </td>
+
+                    <td data-title="Cantidad de producto" class="numeric">
+                        {{ reportCustomer.2.invoiceDetailQuantity }}
+                    </td>
+                    <td data-title="Descuento de producto" class="numeric">
+                        {{ reportCustomer.2.invoiceDetailDiscount }}
+                    </td>
+                    <td data-title="Precio total" class="numeric">
+                        $ {{ reportCustomer.2.invoiceDetailTotal|number_format(0, '.', ',') }}
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td class="text-center text-uppercase text-danger well-sm"
+                        colspan="12">{{ 'No se ha registrado ninguna factura.'|trans }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

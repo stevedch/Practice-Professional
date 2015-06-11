@@ -1,0 +1,124 @@
+{% spaceless %}
+    <div class="page-wrapper">
+        <a class="btn btn-sm btn-default trigger" style="/* margin-top: 235px; */float: left;"
+           href="javascript:">Mostrar
+            productos</a>
+    </div>
+    <div class="modal-wrapper">
+        <div class="modal">
+            <div class="content">
+                <div id="no-more-tables">
+                    <table class="table table-responsive text-center">
+                        <thead class="cf">
+                        <tr class="tr-h">
+                            <td class="numeric">Número de producto</td>
+                            <td class="numeric">Categoria de Producto</td>
+                            <td class="numeric">Nombre de Producto</td>
+                            <td class="numeric">Precio</td>
+                            <td class="numeric">Máximo descuento</td>
+                            <td class="numeric">Cantidad stock <a class="btn-close trigger"
+                                                                  href="javascript:"></a>
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for product in products %}
+
+                            <tr>
+                                <td data-title="Nro  producto">
+                                    <div class="">{{ product.id|e|title }}</div>
+                                </td>
+                                <td data-title="Categoria de Producto">
+                                    <div class="">{{ product.categoryname|e|title }}</div>
+                                </td>
+                                <td data-title="Nombre de Producto">
+                                    <div class="">{{ product.productName|e|title }}</div>
+                                </td>
+                                <td data-title="Precio">
+                                    <div class="">{{ product.productPrice|e }}</div>
+                                </td>
+                                <td data-title="Máximo descuento">
+                                    <div class="">{{ product.productMaxDiscount|e }}</div>
+                                </td>
+                                <td data-title="Cantidad stock">
+                                    {% if  product.productStockQuantity %}
+                                        <div class="">{{ product.productStockQuantity|e }}</div>
+                                    {% else %}
+                                        <div class="label label-danger">{{ 'Sin stock'|trans }}</div>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endspaceless %}
+{% spaceless %}
+    <div class="page-wrappersecond">
+        <a class="btn  btn-sm btn-default triggersecond"
+           style="/* margin-top: 235px; */float: left;   margin-left: 10px;" href="javascript:">Mostrar
+            clientes</a>
+    </div>
+    <div class="modal-wrappersecond">
+        <div class="modalsecond">
+            <div class="contentsecond">
+                <div id="no-more-tables">
+                    <table class="table table-responsive text-center">
+                        <thead class="cf">
+                        <tr class="tr-h">
+                            <td class="numeric">Nro Cliente</td>
+                            <td class="numeric">Rut</td>
+                            <td class="numeric">Nombres</td>
+                            <td class="numeric">Apellido paterno</td>
+                            <td class="numeric">Apellido materno</td>
+                            <td class="numeric">Dirección <a
+                                        class="btn-closesecond triggersecond"
+                                        href="javascript:"></a>
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for customer in customers %}
+                            <tr>
+                                <td data-title="Nro Cliente">
+                                    <div class="">{{ customer.id|e|title }}</div>
+                                </td>
+                                <td data-title="Rut">
+                                    <div class="">{{ customer.customerRut|e|title }}</div>
+                                </td>
+                                <td data-title="Nombres">
+                                    <div class="">{{ customer.customerName|e }}</div>
+                                </td>
+                                <td data-title="Apellido paterno">
+                                    {% if  customer.customerLastname %}
+                                        <div class="">{{ customer.customerLastname|e }}</div>
+                                    {% else %}
+                                        <div class="label label-danger">{{ 'no asignado'|trans }}</div>
+                                    {% endif %}
+                                </td>
+                                <td data-title="Apellido materno">
+                                    {% if  customer.customerMotherslastname %}
+                                        <div class="">{{ customer.customerMotherslastname|e }}</div>
+                                    {% else %}
+                                        <div class="label label-danger">{{ 'no asignado'|trans }}</div>
+                                    {% endif %}
+                                </td>
+                                <td data-title="Dirección">
+                                    {% if  customer.customerAddress %}
+                                        <div class="">{{ customer.customerAddress|e }}</div>
+                                    {% else %}
+                                        <div class="label label-danger">{{ 'no asignado'|trans }}</div>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endspaceless %}
